@@ -1,0 +1,892 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Cafeteria — Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header>
+        <a class="header-logo" href="#">
+            <div class="logo-icon">☕</div>
+            <div>
+                <div class="logo-name">Smart Cafeteria</div>
+                <div class="logo-tag">Documentation Portal</div>
+            </div>
+        </a>
+        <span class="header-badge">Docs</span>
+    </header>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="search-wrap">
+                <input class="search-input" placeholder="Search docs…" oninput="filterSidebar(this.value)">
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Documentation</div>
+                <a class="sidebar-link active" onclick="showTab('api',this)"><span class="link-icon">📡</span>API
+                    Reference</a>
+                <a class="sidebar-link" onclick="showTab('user',this)"><span class="link-icon">👤</span>User Guide</a>
+                <a class="sidebar-link" onclick="showTab('dev',this)"><span class="link-icon">🛠️</span>Developer
+                    Docs</a>
+            </div>
+            <div class="sidebar-divider"></div>
+            <div class="sidebar-section" id="api-nav">
+                <div class="sidebar-section-title">API Sections</div>
+                <a class="sidebar-link" onclick="showTab('api',null);scrollToId('s-auth')"><span
+                        class="link-icon">🔐</span>Authentication</a>
+                <a class="sidebar-link" onclick="showTab('api',null);scrollToId('s-menu')"><span
+                        class="link-icon">🍽️</span>Menu</a>
+                <a class="sidebar-link" onclick="showTab('api',null);scrollToId('s-slots')"><span
+                        class="link-icon">📅</span>Slots</a>
+                <a class="sidebar-link" onclick="showTab('api',null);scrollToId('s-orders')"><span
+                        class="link-icon">🛒</span>Orders</a>
+                <a class="sidebar-link" onclick="showTab('api',null);scrollToId('s-tokens')"><span
+                        class="link-icon">🏷️</span>Tokens</a>
+                <a class="sidebar-link" onclick="showTab('api',null);scrollToId('s-queue')"><span
+                        class="link-icon">🚶</span>Queue</a>
+                <a class="sidebar-link" onclick="showTab('api',null);scrollToId('s-ws')"><span
+                        class="link-icon">🌐</span>WebSockets</a>
+            </div>
+            <div class="sidebar-section" id="user-nav" style="display:none">
+                <div class="sidebar-section-title">User Sections</div>
+                <a class="sidebar-link" onclick="scrollToId('u-student')"><span class="link-icon">🎓</span>Student
+                    Guide</a>
+                <a class="sidebar-link" onclick="scrollToId('u-staff')"><span class="link-icon">👨‍🍳</span>Kitchen
+                    Staff</a>
+                <a class="sidebar-link" onclick="scrollToId('u-admin')"><span class="link-icon">🛠️</span>Admin
+                    Guide</a>
+                <a class="sidebar-link" onclick="scrollToId('u-flow')"><span class="link-icon">🔄</span>End-to-End
+                    Flow</a>
+            </div>
+            <div class="sidebar-section" id="dev-nav" style="display:none">
+                <div class="sidebar-section-title">Dev Sections</div>
+                <a class="sidebar-link" onclick="scrollToId('d-backend')"><span class="link-icon">⚙️</span>Backend</a>
+                <a class="sidebar-link" onclick="scrollToId('d-flutter')"><span class="link-icon">📱</span>Flutter
+                    App</a>
+                <a class="sidebar-link" onclick="scrollToId('d-admin')"><span class="link-icon">🖥️</span>Admin
+                    Panel</a>
+                <a class="sidebar-link" onclick="scrollToId('d-cloud')"><span class="link-icon">☁️</span>Cloud
+                    Architecture</a>
+            </div>
+        </aside>
+
+        <main>
+
+            <!-- ===== API TAB ===== -->
+            <div id="api" class="tab-panel active">
+                <div class="doc-hero">
+                    <div class="doc-hero-eyebrow">📡 REST API + WebSockets</div>
+                    <h1>API Reference</h1>
+                    <p>Complete endpoint reference for the Smart Cafeteria backend. Base URL:
+                        <code>https://smart-cafeteria-backend.azurewebsites.net</code></p>
+                    <div class="hero-pills">
+                        <span class="pill">🔒 JWT Auth</span><span class="pill">FastAPI</span><span
+                            class="pill">PostgreSQL</span><span class="pill">WebSockets</span><span class="pill">OpenAPI
+                            /docs</span>
+                    </div>
+                </div>
+
+                <div class="info-box note"><span class="info-box-icon">ℹ️</span>
+                    <div>All <strong>🔒 protected</strong> endpoints require
+                        <code>Authorization: Bearer &lt;token&gt;</code> header. Get a token from
+                        <code>POST /auth/login</code>.</div>
+                </div>
+
+                <!-- AUTH -->
+                <div class="section" id="s-auth">
+                    <div class="section-header">
+                        <div class="section-icon">🔐</div>
+                        <h2>Authentication <code>/auth</code></h2>
+                        <span class="section-tag">9 endpoints</span>
+                    </div>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-header" onclick="toggle(this)">
+                            <span class="method-badge method-post">POST</span>
+                            <span class="endpoint-path">/auth/send-otp</span>
+                            <span class="endpoint-desc">Send OTP to college email</span>
+                        </div>
+                        <div class="endpoint-body">
+                            <div class="endpoint-section-label">Request Body</div>
+                            <pre><code><span class="json-key">"email"</span>: <span class="json-str">"cb.sc.u4cse23001@cb.students.amrita.edu"</span>,
+<span class="json-key">"purpose"</span>: <span class="json-str">"REGISTER"</span>  <span class="cmt">// or "RESET_PASSWORD"</span></code></pre>
+                            <div class="endpoint-section-label">Response</div>
+                            <pre><code>{ <span class="json-key">"message"</span>: <span class="json-str">"OTP sent successfully"</span> }</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-header" onclick="toggle(this)">
+                            <span class="method-badge method-post">POST</span>
+                            <span class="endpoint-path">/auth/verify-otp</span>
+                            <span class="endpoint-desc">Verify a 6-digit OTP</span>
+                        </div>
+                        <div class="endpoint-body">
+                            <div class="endpoint-section-label">Request Body</div>
+                            <pre><code>{ <span class="json-key">"email"</span>: <span class="json-str">"..."</span>, <span class="json-key">"otp"</span>: <span class="json-str">"482910"</span> }</code></pre>
+                            <div class="endpoint-section-label">Response</div>
+                            <pre><code>{ <span class="json-key">"message"</span>: <span class="json-str">"OTP verified"</span> }</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-header" onclick="toggle(this)">
+                            <span class="method-badge method-post">POST</span>
+                            <span class="endpoint-path">/auth/register/complete</span>
+                            <span class="endpoint-desc">Complete student registration</span>
+                        </div>
+                        <div class="endpoint-body">
+                            <div class="endpoint-section-label">Request Body</div>
+                            <pre><code>{ <span class="json-key">"email"</span>: <span class="json-str">"..."</span>, <span class="json-key">"otp"</span>: <span class="json-str">"482910"</span>, <span class="json-key">"name"</span>: <span class="json-str">"Arjun Kumar"</span>,
+  <span class="json-key">"password"</span>: <span class="json-str">"securePass123"</span>, <span class="json-key">"confirm_password"</span>: <span class="json-str">"securePass123"</span> }</code></pre>
+                            <div class="endpoint-section-label">Response</div>
+                            <pre><code>{ <span class="json-key">"message"</span>: <span class="json-str">"Registration successful. Please login."</span> }</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-header" onclick="toggle(this)">
+                            <span class="method-badge method-post">POST</span>
+                            <span class="endpoint-path">/auth/login</span>
+                            <span class="endpoint-desc">Login — returns JWT token</span>
+                        </div>
+                        <div class="endpoint-body">
+                            <div class="endpoint-section-label">Request Body</div>
+                            <pre><code>{ <span class="json-key">"email"</span>: <span class="json-str">"cb.sc.u4cse23001@cb.students.amrita.edu"</span>, <span class="json-key">"password"</span>: <span class="json-str">"securePass123"</span> }</code></pre>
+                            <div class="endpoint-section-label">Response</div>
+                            <pre><code>{ <span class="json-key">"access_token"</span>: <span class="json-str">"eyJhbGci..."</span>, <span class="json-key">"token_type"</span>: <span class="json-str">"bearer"</span>,
+  <span class="json-key">"student_name"</span>: <span class="json-str">"Arjun Kumar"</span>, <span class="json-key">"register_no"</span>: <span class="json-str">"u4cse23001"</span>,
+  <span class="json-key">"email"</span>: <span class="json-str">"..."</span>, <span class="json-key">"role"</span>: <span class="json-str">"student"</span> }</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-header" onclick="toggle(this)">
+                            <span class="method-badge method-post">POST</span>
+                            <span class="endpoint-path">/auth/admin/login</span>
+                            <span class="endpoint-desc">Admin / Staff login</span>
+                        </div>
+                        <div class="endpoint-body">
+                            <div class="info-box warn"><span class="info-box-icon">⚠️</span>
+                                <div>Use <code>admin@amrita.edu / admin123</code> for admin ·
+                                    <code>staff@amrita.edu / staff123</code> for kitchen staff</div>
+                            </div>
+                            <div class="endpoint-section-label">Response</div>
+                            <pre><code>{ <span class="json-key">"access_token"</span>: <span class="json-str">"eyJ..."</span>, <span class="json-key">"role"</span>: <span class="json-str">"admin"</span>, <span class="json-key">"username"</span>: <span class="json-str">"Administrator"</span> }</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-header" onclick="toggle(this)">
+                            <span class="method-badge method-post">POST</span>
+                            <span class="endpoint-path">/auth/qr-login</span>
+                            <span class="endpoint-desc">Login via Amrita ID Card QR scan</span>
+                        </div>
+                        <div class="endpoint-body">
+                            <div class="endpoint-section-label">Request Body</div>
+                            <pre><code>{ <span class="json-key">"qr_code"</span>: <span class="json-str">"CB.SC.U4CSE23523"</span> }</code></pre>
+                            <div class="endpoint-section-label">Response (existing user)</div>
+                            <pre><code>{ <span class="json-key">"status"</span>: <span class="json-str">"LOGIN_SUCCESS"</span>, <span class="json-key">"access_token"</span>: <span class="json-str">"eyJ..."</span>, <span class="json-key">"role"</span>: <span class="json-str">"student"</span> }</code></pre>
+                            <div class="endpoint-section-label">Response (new user)</div>
+                            <pre><code>{ <span class="json-key">"status"</span>: <span class="json-str">"OTP_SENT"</span>, <span class="json-key">"message"</span>: <span class="json-str">"OTP sent to email to register."</span> }</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-header" onclick="toggle(this)">
+                            <span class="method-badge method-get">GET</span>
+                            <span class="endpoint-path">/auth/me</span>
+                            <span class="endpoint-desc">Get logged-in student profile</span>
+                            <span class="auth-badge">🔒 Auth</span>
+                        </div>
+                        <div class="endpoint-body">
+                            <pre><code>{ <span class="json-key">"id"</span>: <span class="json-num">1</span>, <span class="json-key">"name"</span>: <span class="json-str">"Arjun Kumar"</span>, <span class="json-key">"email"</span>: <span class="json-str">"..."</span>,
+  <span class="json-key">"register_no"</span>: <span class="json-str">"u4cse23001"</span>, <span class="json-key">"phone"</span>: <span class="json-str">"9876543210"</span>,
+  <span class="json-key">"course"</span>: <span class="json-str">"B.Tech CSE"</span>, <span class="json-key">"batch"</span>: <span class="json-str">"2023-2027"</span>, <span class="json-key">"role"</span>: <span class="json-str">"student"</span> }</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-header" onclick="toggle(this)">
+                            <span class="method-badge method-put">PUT</span>
+                            <span class="endpoint-path">/auth/profile</span>
+                            <span class="endpoint-desc">Update student profile</span>
+                            <span class="auth-badge">🔒 Auth</span>
+                        </div>
+                        <div class="endpoint-body">
+                            <pre><code>{ <span class="json-key">"name"</span>: <span class="json-str">"Arjun K."</span>, <span class="json-key">"phone"</span>: <span class="json-str">"9876543210"</span>,
+  <span class="json-key">"course"</span>: <span class="json-str">"B.Tech CSE"</span>, <span class="json-key">"batch"</span>: <span class="json-str">"2023-2027"</span>,
+  <span class="json-key">"profile_image"</span>: <span class="json-str">"https://blob.core.windows.net/..."</span> }</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-card">
+                        <div class="endpoint-header" onclick="toggle(this)">
+                            <span class="method-badge method-post">POST</span>
+                            <span class="endpoint-path">/auth/reset-password/complete</span>
+                            <span class="endpoint-desc">Reset password via OTP</span>
+                        </div>
+                        <div class="endpoint-body">
+                            <pre><code>{ <span class="json-key">"email"</span>: <span class="json-str">"..."</span>, <span class="json-key">"otp"</span>: <span class="json-str">"293847"</span>,
+  <span class="json-key">"new_password"</span>: <span class="json-str">"newPass456"</span>, <span class="json-key">"confirm_password"</span>: <span class="json-str">"newPass456"</span> }</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MENU -->
+                <div class="section" id="s-menu">
+                    <div class="section-header">
+                        <div class="section-icon">🍽️</div>
+                        <h2>Menu <code>/menu</code></h2>
+                        <span class="section-tag">4 endpoints</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Path</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/menu</code></td>
+                                    <td>Fetch menu items. Filter by <code>slot_time=HH:MM</code> (auto-selects
+                                        Breakfast/Lunch/Dinner items)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-post">POST</span></td>
+                                    <td><code>/menu</code></td>
+                                    <td>Create a new menu item (Admin)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-put">PUT</span></td>
+                                    <td><code>/menu/{id}</code></td>
+                                    <td>Update menu item (Admin)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-del">DEL</span></td>
+                                    <td><code>/menu/{id}</code></td>
+                                    <td>Delete menu item (Admin)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="endpoint-section-label" style="margin-top:14px">GET /menu Response</div>
+                    <pre><code>[{ <span class="json-key">"id"</span>: <span class="json-num">1</span>, <span class="json-key">"name"</span>: <span class="json-str">"Samosa"</span>, <span class="json-key">"price"</span>: <span class="json-num">15.0</span>, <span class="json-key">"category"</span>: <span class="json-str">"SNACKS"</span>,
+   <span class="json-key">"meal_types"</span>: [<span class="json-str">"ALL_DAY"</span>], <span class="json-key">"is_available"</span>: <span class="json-bool">true</span>, <span class="json-key">"quantity"</span>: <span class="json-num">50</span> }]</code></pre>
+                </div>
+
+                <!-- SLOTS -->
+                <div class="section" id="s-slots">
+                    <div class="section-header">
+                        <div class="section-icon">📅</div>
+                        <h2>Slots <code>/slots</code></h2>
+                        <span class="section-tag">4 endpoints</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Path</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/slots/available?target_date=YYYY-MM-DD</code></td>
+                                    <td>Get available slots with remaining capacity</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-post">POST</span></td>
+                                    <td><code>/slots</code></td>
+                                    <td>Create time slot (Admin)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-put">PUT</span></td>
+                                    <td><code>/slots/{id}</code></td>
+                                    <td>Update slot</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-del">DEL</span></td>
+                                    <td><code>/slots/{id}</code></td>
+                                    <td>Delete slot</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre><code><span class="cmt">// GET /slots/available?target_date=2025-03-10</span>
+[{ <span class="json-key">"id"</span>: <span class="json-num">1</span>, <span class="json-key">"start_time"</span>: <span class="json-str">"12:00"</span>, <span class="json-key">"end_time"</span>: <span class="json-str">"12:30"</span>,
+   <span class="json-key">"capacity"</span>: <span class="json-num">50</span>, <span class="json-key">"remaining_capacity"</span>: <span class="json-num">23</span>, <span class="json-key">"date"</span>: <span class="json-str">"2025-03-10"</span> }]</code></pre>
+                </div>
+
+                <!-- ORDERS -->
+                <div class="section" id="s-orders">
+                    <div class="section-header">
+                        <div class="section-icon">🛒</div>
+                        <h2>Orders <code>/orders</code></h2>
+                        <span class="section-tag">6 endpoints</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Path</th>
+                                    <th>Auth</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="method-badge method-post">POST</span></td>
+                                    <td><code>/orders</code></td>
+                                    <td>🔒</td>
+                                    <td>Create pre-order (slot + items)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-post">POST</span></td>
+                                    <td><code>/orders/walk-in</code></td>
+                                    <td>—</td>
+                                    <td>Walk-in order for admin/staff counter</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/orders/my</code></td>
+                                    <td>🔒</td>
+                                    <td>All orders for logged-in student</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/orders/{id}</code></td>
+                                    <td>🔒</td>
+                                    <td>Specific order details</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-post">POST</span></td>
+                                    <td><code>/orders/{id}/pay</code></td>
+                                    <td>🔒</td>
+                                    <td>Confirm Razorpay payment</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-del">DEL</span></td>
+                                    <td><code>/orders/{id}/cancel</code></td>
+                                    <td>🔒</td>
+                                    <td>Cancel order</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="endpoint-section-label" style="margin-top:14px">POST /orders Request</div>
+                    <pre><code>{ <span class="json-key">"slot_id"</span>: <span class="json-num">1</span>, <span class="json-key">"items"</span>: [{ <span class="json-key">"menu_item_id"</span>: <span class="json-num">1</span>, <span class="json-key">"quantity"</span>: <span class="json-num">2</span> }] }</code></pre>
+                </div>
+
+                <!-- TOKENS -->
+                <div class="section" id="s-tokens">
+                    <div class="section-header">
+                        <div class="section-icon">🏷️</div>
+                        <h2>Tokens <code>/tokens</code></h2>
+                        <span class="section-tag">5 endpoints</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Path</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/tokens/{id}</code></td>
+                                    <td>Token details + queue position + wait time</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/tokens/order/{order_id}</code></td>
+                                    <td>Token linked to an order</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/tokens/pending/all</code></td>
+                                    <td>All pending tokens</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-post">POST</span></td>
+                                    <td><code>/tokens/{id}/arrive</code></td>
+                                    <td>Mark token as ARRIVED (QR scanned)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-post">POST</span></td>
+                                    <td><code>/tokens/arrive-by-number</code></td>
+                                    <td>Mark arrived by token number string</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <pre><code><span class="cmt">// GET /tokens/18</span>
+{ <span class="json-key">"id"</span>: <span class="json-num">18</span>, <span class="json-key">"token_number"</span>: <span class="json-str">"T-204"</span>, <span class="json-key">"status"</span>: <span class="json-str">"ARRIVED"</span>,
+  <span class="json-key">"position_in_queue"</span>: <span class="json-num">3</span>, <span class="json-key">"estimated_wait_minutes"</span>: <span class="json-num">6</span> }</code></pre>
+                </div>
+
+                <!-- QUEUE -->
+                <div class="section" id="s-queue">
+                    <div class="section-header">
+                        <div class="section-icon">🚶</div>
+                        <h2>Queue <code>/queue</code></h2>
+                        <span class="section-tag">5 endpoints</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Path</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/queue/status</code></td>
+                                    <td>Queue count + wait + active tokens list</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/queue/pending</code></td>
+                                    <td>Tokens awaiting student arrival</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/queue/arrived?category=SNACKS</code></td>
+                                    <td>Active tokens (optional category filter)</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-get">GET</span></td>
+                                    <td><code>/queue/served</code></td>
+                                    <td>Last 50 served tokens</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="method-badge method-post">POST</span></td>
+                                    <td><code>/queue/serve/{token_id}?category=</code></td>
+                                    <td>Mark items served (partial or full)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- WEBSOCKETS -->
+                <div class="section" id="s-ws">
+                    <div class="section-header">
+                        <div class="section-icon">🌐</div>
+                        <h2>WebSockets <code>/ws</code></h2>
+                    </div>
+                    <div class="info-box tip"><span class="info-box-icon">💡</span>
+                        <div>Connect to <code>wss://…/ws/queue</code> or <code>wss://…/ws/menu</code> for real-time
+                            events. No auth required.</div>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Event Type</th>
+                                    <th>Channel</th>
+                                    <th>Trigger</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>queue_update</code></td>
+                                    <td>queue</td>
+                                    <td>New pre-order placed</td>
+                                </tr>
+                                <tr>
+                                    <td><code>token_arrived</code></td>
+                                    <td>queue</td>
+                                    <td>Student scanned QR at counter</td>
+                                </tr>
+                                <tr>
+                                    <td><code>token_served</code></td>
+                                    <td>queue</td>
+                                    <td>Token fully served</td>
+                                </tr>
+                                <tr>
+                                    <td><code>menu_update</code></td>
+                                    <td>menu</td>
+                                    <td>Stock quantity changed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="endpoint-section-label" style="margin-top:14px">Error Codes</div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>400</code></td>
+                                    <td>Bad Request — invalid input</td>
+                                </tr>
+                                <tr>
+                                    <td><code>401</code></td>
+                                    <td>Unauthorized — invalid / expired token</td>
+                                </tr>
+                                <tr>
+                                    <td><code>403</code></td>
+                                    <td>Forbidden — inactive account or wrong role</td>
+                                </tr>
+                                <tr>
+                                    <td><code>404</code></td>
+                                    <td>Resource not found</td>
+                                </tr>
+                                <tr>
+                                    <td><code>409</code></td>
+                                    <td>Conflict — e.g. deleting item linked to orders</td>
+                                </tr>
+                                <tr>
+                                    <td><code>422</code></td>
+                                    <td>Validation Error — wrong field types or missing fields</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- END API TAB -->
+
+            <!-- ===== USER TAB ===== -->
+            <div id="user" class="tab-panel">
+                <div class="doc-hero">
+                    <div class="doc-hero-eyebrow">👤 App & Web Guides</div>
+                    <h1>User Documentation</h1>
+                    <p>Role-based instructions for students, kitchen staff, and cafeteria administrators.</p>
+                </div>
+
+                <div class="role-cards">
+                    <div class="role-card student" onclick="scrollToId('u-student')">
+                        <div class="role-card-icon">🎓</div>
+                        <h3>Student</h3>
+                        <p>Mobile app flow: Register, login via QR, pre-order food, track queue position, and collect
+                            orders.</p>
+                    </div>
+                    <div class="role-card staff" onclick="scrollToId('u-staff')">
+                        <div class="role-card-icon">👨‍🍳</div>
+                        <h3>Kitchen Staff</h3>
+                        <p>Admin panel counter view: Scan ID cards, process walk-in orders, and serve food at stations.
+                        </p>
+                    </div>
+                    <div class="role-card admin" onclick="scrollToId('u-admin')">
+                        <div class="role-card-icon">🛠️</div>
+                        <h3>Administrator</h3>
+                        <p>Total platform control: Menu & slot management, ML demand analytics, and viewing contact
+                            queries.</p>
+                    </div>
+                </div>
+
+                <div class="section" id="u-student">
+                    <div class="section-header">
+                        <h2>🎓 Student Guide (Flutter Mobile App)</h2>
+                    </div>
+                    <div class="endpoint-section-label">1. Registration & Login</div>
+                    <ul class="steps">
+                        <li><span class="step-num">1</span>Open the Smart Cafeteria app and register with your Amrita
+                            college email.</li>
+                        <li><span class="step-num">2</span>Verify the 6-digit OTP sent to your email and set a password.
+                        </li>
+                        <li><span class="step-num">3</span>Login manually or use "Scan ID Card QR" for instant login.
+                        </li>
+                    </ul>
+
+                    <div class="endpoint-section-label" style="margin-top:24px">2. Ordering Food & Tracking</div>
+                    <ul class="steps">
+                        <li><span class="step-num">1</span>Tap "Order Now" to select an available time slot for your
+                            meal.</li>
+                        <li><span class="step-num">2</span>Browse items (Breakfast/Lunch/Dinner filter automatically
+                            applies) and build cart.</li>
+                        <li><span class="step-num">3</span>Confirm order & pay via digital gateway. See status change to
+                            PAID.</li>
+                        <li><span class="step-num">4</span>App generates your Token number + QR code showing live queue
+                            position & wait time.</li>
+                        <li><span class="step-num">5</span>Show your QR at the counter to mark ARRIVED and move into the
+                            active queue.</li>
+                        <li><span class="step-num">6</span>Collect your food when notified token is SERVED.</li>
+                    </ul>
+                </div>
+
+                <div class="section" id="u-staff">
+                    <div class="section-header">
+                        <h2>👨‍🍳 Kitchen Staff Guide (Counter Panel)</h2>
+                    </div>
+                    <ul class="steps">
+                        <li><span class="step-num">1</span>Login to the web panel using <code>staff@amrita.edu</code>.
+                        </li>
+                        <li><span class="step-num">2</span><strong>Scan Student QR:</strong> Click QR Scanner to mark
+                            pre-orders as arrived.</li>
+                        <li><span class="step-num">3</span><strong>Walk-In Orders:</strong> Generate a W-xxx token
+                            instantly for students with no pre-order.</li>
+                        <li><span class="step-num">4</span><strong>Station Serving:</strong> Use station filters
+                            (Snacks/Beverages/Main) and click 'Serve' when food is handed over.</li>
+                    </ul>
+                </div>
+
+                <div class="section" id="u-admin">
+                    <div class="section-header">
+                        <h2>🛠️ Admin Guide (Management Panel)</h2>
+                    </div>
+                    <ul class="steps">
+                        <li><span class="step-num">1</span>Login to the web panel using <code>admin@amrita.edu</code>.
+                        </li>
+                        <li><span class="step-num">2</span><strong>Menu Manager:</strong> Add, edit, or toggle items
+                            out-of-stock instantly.</li>
+                        <li><span class="step-num">3</span><strong>Slot Manager:</strong> Create and manage daily
+                            cafeteria time slots with capacity.</li>
+                        <li><span class="step-num">4</span><strong>Analytics Dashboard:</strong> View XGBoost ML demand
+                            predictions, top items, peak hour graphs, and weather correlations for planning.</li>
+                    </ul>
+                </div>
+
+                <div class="section" id="u-flow">
+                    <div class="section-header">
+                        <h2>🔄 End-to-End Flow Summary</h2>
+                    </div>
+                    <pre><code>Student (App)                  Backend (API)              Staff/Admin (Web Panel)
+─────────────────────────────────────────────────────────────────────────────────
+Register → OTP Verify     →   Create Account              
+Login                     →   Get JWT Token               
+Select Slot + Build Cart  →   Check Availability          Admin: Create Slots
+Place Order + Pay         →   Create Order + Token         
+                          →   WebSocket: queue_update  →  Admin receives update
+Arrive at Cafeteria       →                           ←   Staff: Scan QR Code
+                          →   Mark ARRIVED + Queue         
+                          →   WebSocket: token_arrived     
+Wait for token number     →                           ←   Staff: Mark Served
+                          →   Token status = SERVED        
+                          →   WebSocket: token_served  →  Student: notified</code></pre>
+                </div>
+            </div>
+            <!-- END USER TAB -->
+
+            <!-- ===== DEV TAB ===== -->
+            <div id="dev" class="tab-panel">
+                <div class="doc-hero">
+                    <div class="doc-hero-eyebrow">🛠️ Architecture & Setup</div>
+                    <h1>Developer Documentation</h1>
+                    <p>Project stack details, cloud deployment, and codebase structure.</p>
+                </div>
+
+                <div class="section" id="d-backend">
+                    <div class="section-header">
+                        <h2>⚙️ Backend — FastAPI (Python 3.11+)</h2>
+                    </div>
+                    <div class="tech-grid">
+                        <div class="tech-card"><span class="tech-card-icon">🐍</span>
+                            <div>
+                                <div class="tech-card-label">Framework</div>
+                                <div class="tech-card-value">FastAPI Async</div>
+                            </div>
+                        </div>
+                        <div class="tech-card"><span class="tech-card-icon">🐘</span>
+                            <div>
+                                <div class="tech-card-label">Database</div>
+                                <div class="tech-card-value">PostgreSQL + SQLAlchemy</div>
+                            </div>
+                        </div>
+                        <div class="tech-card"><span class="tech-card-icon">🔑</span>
+                            <div>
+                                <div class="tech-card-label">Auth</div>
+                                <div class="tech-card-value">JWT Bearer + bcrypt</div>
+                            </div>
+                        </div>
+                        <div class="tech-card"><span class="tech-card-icon">🧠</span>
+                            <div>
+                                <div class="tech-card-label">ML</div>
+                                <div class="tech-card-value">XGBoost API Models</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="endpoint-section-label" style="margin-top:20px">Key Data Models</div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Model</th>
+                                    <th>Key Fields</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>Student</code></td>
+                                    <td>id, email, register_no, hashed_password, course</td>
+                                    <td>Student account data</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Order</code></td>
+                                    <td>id, student_id, slot_id, status, type</td>
+                                    <td>Main order container (PRE_ORDER/WALK_IN)</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Token</code></td>
+                                    <td>id, order_id, token_number, status, position</td>
+                                    <td>Queue ticket</td>
+                                </tr>
+                                <tr>
+                                    <td><code>Slot</code></td>
+                                    <td>id, start_time, end_time, capacity, date</td>
+                                    <td>Menu/Capacity grouping</td>
+                                </tr>
+                                <tr>
+                                    <td><code>MenuItem</code></td>
+                                    <td>id, name, price, category, meal_types, stock</td>
+                                    <td>Master food item list</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="section" id="d-flutter">
+                    <div class="section-header">
+                        <h2>📱 Frontend — Flutter 3.x (Student App)</h2>
+                    </div>
+                    <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-bottom:16px;">State
+                        managed by `setState` + `SharedPreferences` for token storage. HTTP calls handled by global API
+                        service wrapping endpoints. Navigation pushes screens via named routes and pop contexts.</p>
+                    <div class="tree">
+                        <div><span class="dir">lib/</span></div>
+                        <div>├── <span class="file">main.dart</span> <span class="cmt"># Material app root &
+                                routing</span></div>
+                        <div>├── <span class="dir">screens/</span></div>
+                        <div>│ ├── <span class="file">home_screen.dart</span> <span class="cmt"># Profile headers &
+                                quick actions</span></div>
+                        <div>│ ├── <span class="file">slot_selection_screen.dart</span></div>
+                        <div>│ ├── <span class="file">menu_screen.dart</span> <span class="cmt"># Auto-filters by slot
+                                meal type</span></div>
+                        <div>│ ├── <span class="file">cart_screen.dart</span> <span class="cmt"># Order creation +
+                                Razorpay</span></div>
+                        <div>│ └── <span class="file">token_screen.dart</span> <span class="cmt"># Live WebSocket wait
+                                time reading</span></div>
+                        <div>└── <span class="dir">services/</span></div>
+                        <div> └── <span class="file">api_service.dart</span> <span class="cmt"># All HTTP wrapping
+                                logic</span></div>
+                    </div>
+                </div>
+
+                <div class="section" id="d-admin">
+                    <div class="section-header">
+                        <h2>🖥️ Admin — React 18 + Vite</h2>
+                    </div>
+                    <div class="tech-grid" style="margin-bottom:16px">
+                        <div class="tech-card"><span class="tech-card-icon">⚛️</span>
+                            <div>
+                                <div class="tech-card-label">Core</div>
+                                <div class="tech-card-value">React 18 + TS</div>
+                            </div>
+                        </div>
+                        <div class="tech-card"><span class="tech-card-icon">🎨</span>
+                            <div>
+                                <div class="tech-card-label">Styling</div>
+                                <div class="tech-card-value">Custom CSS Modules</div>
+                            </div>
+                        </div>
+                        <div class="tech-card"><span class="tech-card-icon">⚡</span>
+                            <div>
+                                <div class="tech-card-label">API</div>
+                                <div class="tech-card-value">Axios + Native WS</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color:var(--text-secondary);font-size:14px;line-height:1.6">Role-based sidebar limits
+                        staff to Counter/Kitchen views while Admins see fully analytics and structural control. Live
+                        tracking uses explicit WebSocket connections merging with Axios hooks.</p>
+                </div>
+
+                <div class="section" id="d-cloud">
+                    <div class="section-header">
+                        <h2>☁️ Azure Cloud Architecture</h2>
+                    </div>
+
+                    <div class="arch-flow">
+                        <div class="arch-layer">
+                            <div class="arch-box">📱 Flutter App</div>
+                            <div class="arch-arrow">→</div>
+                            <div class="arch-box" style="border-color:#fbbf24;color:#fbbf24">☁️ Azure App Service
+                                (FastAPI)</div>
+                            <div class="arch-arrow">→</div>
+                            <div class="arch-box" style="border-color:#60a5fa;color:#60a5fa">🐘 Azure DB (PostgreSQL)
+                            </div>
+                        </div>
+                        <div class="arch-layer" style="margin-top:16px">
+                            <div class="arch-box">🖥️ React Admin Web</div>
+                            <div class="arch-arrow">→</div>
+                            <div class="arch-box" style="border-color:#fbbf24;color:#fbbf24">☁️ Azure App Service
+                                (FastAPI)</div>
+                            <div class="arch-arrow">→</div>
+                            <div class="arch-box" style="border-color:#10b981;color:#10b981">📦 Azure Blob Storage
+                                (Images/ML)</div>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Azure Service</th>
+                                    <th>Usage Role</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>App Service (B1 Tier Linux)</td>
+                                    <td>Hosts the Python FastAPI backend engine</td>
+                                </tr>
+                                <tr>
+                                    <td>PostgreSQL Flexible Server</td>
+                                    <td>Primary relational database engine</td>
+                                </tr>
+                                <tr>
+                                    <td>Blob Storage</td>
+                                    <td>Student profile avatars & serialized ML models</td>
+                                </tr>
+                                <tr>
+                                    <td>Application Insights</td>
+                                    <td>Backend health check, API monitoring, logs</td>
+                                </tr>
+                                <tr>
+                                    <td>Static Web Apps</td>
+                                    <td>Hosts the React Admin application</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END DEV TAB -->
+
+        </main>
+    </div>
+
+    <script src="tabs.js"></script>
+</body>
+
+</html>

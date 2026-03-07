@@ -72,6 +72,8 @@
                     Panel</a>
                 <a class="sidebar-link" onclick="scrollToId('d-cloud')"><span class="link-icon">☁️</span>Cloud
                     Architecture</a>
+                <a class="sidebar-link" onclick="scrollToId('d-diagrams')"><span class="link-icon">📊</span>System
+                    Diagrams</a>
             </div>
         </aside>
 
@@ -83,7 +85,8 @@
                     <div class="doc-hero-eyebrow">📡 REST API + WebSockets</div>
                     <h1>API Reference</h1>
                     <p>Complete endpoint reference for the Smart Cafeteria backend. Base URL:
-                        <code>https://smart-cafeteria-backend.azurewebsites.net</code></p>
+                        <code>https://smart-cafeteria-backend.azurewebsites.net</code>
+                    </p>
                     <div class="hero-pills">
                         <span class="pill">🔒 JWT Auth</span><span class="pill">FastAPI</span><span
                             class="pill">PostgreSQL</span><span class="pill">WebSockets</span><span class="pill">OpenAPI
@@ -94,7 +97,8 @@
                 <div class="info-box note"><span class="info-box-icon">ℹ️</span>
                     <div>All <strong>🔒 protected</strong> endpoints require
                         <code>Authorization: Bearer &lt;token&gt;</code> header. Get a token from
-                        <code>POST /auth/login</code>.</div>
+                        <code>POST /auth/login</code>.
+                    </div>
                 </div>
 
                 <!-- AUTH -->
@@ -174,7 +178,8 @@
                         <div class="endpoint-body">
                             <div class="info-box warn"><span class="info-box-icon">⚠️</span>
                                 <div>Use <code>admin@amrita.edu / admin123</code> for admin ·
-                                    <code>staff@amrita.edu / staff123</code> for kitchen staff</div>
+                                    <code>staff@amrita.edu / staff123</code> for kitchen staff
+                                </div>
                             </div>
                             <div class="endpoint-section-label">Response</div>
                             <pre><code>{ <span class="json-key">"access_token"</span>: <span class="json-str">"eyJ..."</span>, <span class="json-key">"role"</span>: <span class="json-str">"admin"</span>, <span class="json-key">"username"</span>: <span class="json-str">"Administrator"</span> }</code></pre>
@@ -878,6 +883,36 @@ Wait for token number     →                           ←   Staff: Mark Served
                             </tbody>
                         </table>
                     </div>
+                </div>
+
+                <div class="section" id="d-diagrams">
+                    <div class="section-header">
+                        <h2>📊 System Diagrams</h2>
+                    </div>
+                    <p style="color:var(--text-secondary);font-size:14px;line-height:1.6;margin-bottom:24px;">Complete
+                        architectural, structural, and behavioral diagrams for the Smart Cafeteria project.</p>
+
+                    <div class="endpoint-section-label">Architecture Diagram</div>
+                    <div class="diagram-wrapper"><img src="architecture.png" alt="Architecture Diagram"
+                            class="diagram-img"></div>
+
+                    <div class="endpoint-section-label">Use Case Diagram</div>
+                    <div class="diagram-wrapper"><img src="use_case.png" alt="Use Case Diagram" class="diagram-img">
+                    </div>
+
+                    <div class="endpoint-section-label">Class Diagram</div>
+                    <div class="diagram-wrapper"><img src="class.png" alt="Class Diagram" class="diagram-img"></div>
+
+                    <div class="endpoint-section-label">Activity Diagram</div>
+                    <div class="diagram-wrapper"><img src="activity_diagramm.png" alt="Activity Diagram"
+                            class="diagram-img"></div>
+
+                    <div class="endpoint-section-label">Sequence Diagram</div>
+                    <div class="diagram-wrapper"><img src="sequence_dig.png" alt="Sequence Diagram" class="diagram-img">
+                    </div>
+
+                    <div class="endpoint-section-label">Entity Relationship (ER) Diagram</div>
+                    <div class="diagram-wrapper"><img src="er.png" alt="ER Diagram" class="diagram-img"></div>
                 </div>
 
             </div>

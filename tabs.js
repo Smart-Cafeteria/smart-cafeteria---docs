@@ -19,6 +19,7 @@ function showTab(tabId, el) {
     document.getElementById('api-nav').style.display = tabId === 'api' ? 'block' : 'none';
     document.getElementById('user-nav').style.display = tabId === 'user' ? 'block' : 'none';
     document.getElementById('dev-nav').style.display = tabId === 'dev' ? 'block' : 'none';
+    document.getElementById('report-nav').style.display = tabId === 'report' ? 'block' : 'none';
 
     window.scrollTo({ top: 0, behavior: 'instant' });
 }
@@ -40,7 +41,8 @@ function filterSidebar(query) {
     const activeNavId =
         document.getElementById('api-nav').style.display === 'block' ? 'api-nav' :
             document.getElementById('user-nav').style.display === 'block' ? 'user-nav' :
-                document.getElementById('dev-nav').style.display === 'block' ? 'dev-nav' : null;
+                document.getElementById('dev-nav').style.display === 'block' ? 'dev-nav' :
+                    document.getElementById('report-nav').style.display === 'block' ? 'report-nav' : null;
 
     if (!activeNavId) return;
 

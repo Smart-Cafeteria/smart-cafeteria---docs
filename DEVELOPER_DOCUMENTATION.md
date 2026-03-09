@@ -149,7 +149,7 @@ cp .env.example .env          # Fill in DB URL, JWT secret, etc.
 uvicorn app.main:app --reload
 
 # API docs available at:
-# http://localhost:8000/docs
+# <a href="https://smart-cafe-backend-c8h7d7g4a2dpe8ck.malaysiawest-01.azurewebsites.net/docs" target="_blank">https://smart-cafe-backend-c8h7d7g4a2dpe8ck.malaysiawest-01.azurewebsites.net/docs</a>
 ```
 
 ### Running Tests

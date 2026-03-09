@@ -1,7 +1,7 @@
 # 📡 Smart Cafeteria — API Documentation
 
 **Base URL (Production):** `https://smart-cafeteria-backend.azurewebsites.net`  
-**Base URL (Local Dev):** `http://localhost:8000`  
+**Base URL (Local Dev):** <a href="https://smart-cafe-backend-c8h7d7g4a2dpe8ck.malaysiawest-01.azurewebsites.net" target="_blank">https://smart-cafe-backend-c8h7d7g4a2dpe8ck.malaysiawest-01.azurewebsites.net</a>
 **API Version:** v1  
 **Authentication:** Bearer JWT Token (`Authorization: Bearer <token>`)
 

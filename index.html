@@ -938,148 +938,167 @@ Wait for token number     →                           ←   Staff: Mark Served
                     <h1>Project Report</h1>
                     <p>A comprehensive overview of the Smart Cafeteria Demand Forecasting and Token-Based Queue
                         Optimization System.</p>
-                </div>
-
-                <div class="section" id="r-abstract">
-                    <div class="section-header">
-                        <h2>📝 1. Abstract</h2>
-                    </div>
-                    <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;margin-bottom:16px;">
-                        The Smart Cafeteria system is an intelligent demand forecasting and token-based pre-ordering
-                        platform built to optimize college cafeteria operations. By combining a mobile app for students
-                        with a real-time ML-powered web panel for staff and administrators, the system eliminates
-                        traditional queuing, predicts daily food demand to minimize waste, and streamlines digital
-                        payments.
-                    </p>
-                </div>
-
-                <div class="section" id="r-objectives">
-                    <div class="section-header">
-                        <h2>🎯 2. Core Objectives</h2>
-                    </div>
-                    <ul class="steps">
-                        <li><span class="step-num">1</span><strong>Reduce Wait Times:</strong> Eliminate physical queues
-                            through a slot-based pre-ordering system and live wait-time tracking.</li>
-                        <li><span class="step-num">2</span><strong>Minimize Food Waste:</strong> Utilize Machine
-                            Learning (XGBoost) to predict food demand based on historical data, weather, and day-of-week
-                            trends.</li>
-                        <li><span class="step-num">3</span><strong>Digitize Payments:</strong> Provide seamless digital
-                            checkout integrated with Razorpay for secure student transactions.</li>
-                        <li><span class="step-num">4</span><strong>Real-time Counter Operations:</strong> Equip kitchen
-                            staff with instant QR scanning, walk-in management, and live order tracking via WebSockets.
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="section" id="r-architecture">
-                    <div class="section-header">
-                        <h2>🏗️ 3. System Architecture</h2>
-                    </div>
-                    <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;margin-bottom:16px;">
-                        The application leverages a robust <strong>4-Tier Cloud Architecture</strong> deployed on Azure:
-                    </p>
-                    <ul class="steps">
-                        <li><span class="step-num">🖥️</span><strong>Client Tier (Frontend):</strong> Flutter Mobile App
-                            for Students and a React (Vite) Admin Dashboard for Counter Staff & Administrators.</li>
-                        <li><span class="step-num">⚙️</span><strong>Backend/API Tier:</strong> Asynchronous Python
-                            <code>FastAPI</code> Engine serving RESTful endpoints and WebSocket streams.
-                        </li>
-                        <li><span class="step-num">🐘</span><strong>Data Tier:</strong> <code>PostgreSQL</code> (hosted
-                            on Supabase/Azure) for relational data and Azure Blob Storage for media assets.</li>
-                        <li><span class="step-num">🧠</span><strong>Intelligence Tier:</strong> Integrated
-                            <code>XGBoost</code> ML Models for historical demand forecasting and queue duration
-                            estimation.
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="section" id="r-features">
-                    <div class="section-header">
-                        <h2>✨ 4. Key Features Implemented</h2>
+                    <div style="margin-top: 20px;">
+                        <a href="Smart_cafeteria_report.pdf" download class="pill"
+                            style="text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; background-color: rgba(255, 126, 64, 0.1); border: 1px solid rgba(255, 126, 64, 0.4); color: #FF7E40;">
+                            <span style="margin-right: 8px;">📥</span> Download Executive PDF Report
+                        </a>
                     </div>
 
-                    <div class="endpoint-section-label"
-                        style="margin-top:20px; font-size:14px; color:var(--text-primary);">For Students:</div>
-                    <ul class="steps" style="margin-bottom:24px;">
-                        <li><span class="step-num"
-                                style="background:var(--bg-elevated);border-color:var(--border-bright);">🎓</span><strong>Amrita
-                                ID Integration:</strong> Sign up and login instantly using institutional email ID or ID
-                            Card QR Code.</li>
-                        <li><span class="step-num"
-                                style="background:var(--bg-elevated);border-color:var(--border-bright);">⏰</span><strong>Slot
-                                Selection:</strong> Pick available time intervals (e.g., Lunch 12:30-1:00 PM) to manage
-                            crowd flow.</li>
-                        <li><span class="step-num"
-                                style="background:var(--bg-elevated);border-color:var(--border-bright);">📍</span><strong>Live
-                                Queue Tracking:</strong> View live queue position and estimated wait time directly from
-                            the app.</li>
-                    </ul>
-
-                    <div class="endpoint-section-label" style="font-size:14px; color:var(--text-primary);">For
-                        Staff/Administrators:</div>
-                    <ul class="steps">
-                        <li><span class="step-num"
-                                style="background:var(--bg-elevated);border-color:var(--border-bright);">📷</span><strong>Rapid
-                                QR Check-in:</strong> Instantly verify pre-orders via QR scanner at the counter.</li>
-                        <li><span class="step-num"
-                                style="background:var(--bg-elevated);border-color:var(--border-bright);">🍔</span><strong>Dynamic
-                                Menu Management:</strong> Toggle availability, update prices, or add categories
-                            instantly.</li>
-                        <li><span class="step-num"
-                                style="background:var(--bg-elevated);border-color:var(--border-bright);">📊</span><strong>Demand
-                                Forecasting Analytics:</strong> View projected item sales to prepare bulk ingredients
-                            efficiently.</li>
-                    </ul>
-                </div>
-
-                <div class="section" id="r-stack">
-                    <div class="section-header">
-                        <h2>💻 5. Technology Stack Summary</h2>
+                    <div class="section" id="r-abstract">
+                        <div class="section-header">
+                            <h2>📝 1. Abstract</h2>
+                        </div>
+                        <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;margin-bottom:16px;">
+                            The Smart Cafeteria system is an intelligent demand forecasting and token-based pre-ordering
+                            platform built to optimize college cafeteria operations. By combining a mobile app for
+                            students
+                            with a real-time ML-powered web panel for staff and administrators, the system eliminates
+                            traditional queuing, predicts daily food demand to minimize waste, and streamlines digital
+                            payments.
+                        </p>
                     </div>
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Technologies</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Mobile App</strong></td>
-                                    <td>Flutter 3.x, Dart, Provider/SetState</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Web Admin</strong></td>
-                                    <td>React 18, Vite, TypeScript, Recharts, Axios</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Backend API</strong></td>
-                                    <td>Python 3.11+, FastAPI, SQLAlchemy, WebSockets</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Database</strong></td>
-                                    <td>PostgreSQL, Azure Blob Storage</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Machine Learning</strong></td>
-                                    <td>scikit-learn, XGBoost, Pandas</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Cloud & DevOps</strong></td>
-                                    <td>GitHub Actions, Azure App Services, Firebase Hosting</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>External Services</strong></td>
-                                    <td>Razorpay API, SMTP</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
 
-            </div>
-            <!-- END REPORT TAB -->
+                    <div class="section" id="r-objectives">
+                        <div class="section-header">
+                            <h2>🎯 2. Core Objectives</h2>
+                        </div>
+                        <ul class="steps">
+                            <li><span class="step-num">1</span><strong>Reduce Wait Times:</strong> Eliminate physical
+                                queues
+                                through a slot-based pre-ordering system and live wait-time tracking.</li>
+                            <li><span class="step-num">2</span><strong>Minimize Food Waste:</strong> Utilize Machine
+                                Learning (XGBoost) to predict food demand based on historical data, weather, and
+                                day-of-week
+                                trends.</li>
+                            <li><span class="step-num">3</span><strong>Digitize Payments:</strong> Provide seamless
+                                digital
+                                checkout integrated with Razorpay for secure student transactions.</li>
+                            <li><span class="step-num">4</span><strong>Real-time Counter Operations:</strong> Equip
+                                kitchen
+                                staff with instant QR scanning, walk-in management, and live order tracking via
+                                WebSockets.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="section" id="r-architecture">
+                        <div class="section-header">
+                            <h2>🏗️ 3. System Architecture</h2>
+                        </div>
+                        <p style="color:var(--text-secondary);font-size:15px;line-height:1.7;margin-bottom:16px;">
+                            The application leverages a robust <strong>4-Tier Cloud Architecture</strong> deployed on
+                            Azure:
+                        </p>
+                        <ul class="steps">
+                            <li><span class="step-num">🖥️</span><strong>Client Tier (Frontend):</strong> Flutter Mobile
+                                App
+                                for Students and a React (Vite) Admin Dashboard for Counter Staff & Administrators.</li>
+                            <li><span class="step-num">⚙️</span><strong>Backend/API Tier:</strong> Asynchronous Python
+                                <code>FastAPI</code> Engine serving RESTful endpoints and WebSocket streams.
+                            </li>
+                            <li><span class="step-num">🐘</span><strong>Data Tier:</strong> <code>PostgreSQL</code>
+                                (hosted
+                                on Supabase/Azure) for relational data and Azure Blob Storage for media assets.</li>
+                            <li><span class="step-num">🧠</span><strong>Intelligence Tier:</strong> Integrated
+                                <code>XGBoost</code> ML Models for historical demand forecasting and queue duration
+                                estimation.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="section" id="r-features">
+                        <div class="section-header">
+                            <h2>✨ 4. Key Features Implemented</h2>
+                        </div>
+
+                        <div class="endpoint-section-label"
+                            style="margin-top:20px; font-size:14px; color:var(--text-primary);">For Students:</div>
+                        <ul class="steps" style="margin-bottom:24px;">
+                            <li><span class="step-num"
+                                    style="background:var(--bg-elevated);border-color:var(--border-bright);">🎓</span><strong>Amrita
+                                    ID Integration:</strong> Sign up and login instantly using institutional email ID or
+                                ID
+                                Card QR Code.</li>
+                            <li><span class="step-num"
+                                    style="background:var(--bg-elevated);border-color:var(--border-bright);">⏰</span><strong>Slot
+                                    Selection:</strong> Pick available time intervals (e.g., Lunch 12:30-1:00 PM) to
+                                manage
+                                crowd flow.</li>
+                            <li><span class="step-num"
+                                    style="background:var(--bg-elevated);border-color:var(--border-bright);">📍</span><strong>Live
+                                    Queue Tracking:</strong> View live queue position and estimated wait time directly
+                                from
+                                the app.</li>
+                        </ul>
+
+                        <div class="endpoint-section-label" style="font-size:14px; color:var(--text-primary);">For
+                            Staff/Administrators:</div>
+                        <ul class="steps">
+                            <li><span class="step-num"
+                                    style="background:var(--bg-elevated);border-color:var(--border-bright);">📷</span><strong>Rapid
+                                    QR Check-in:</strong> Instantly verify pre-orders via QR scanner at the counter.
+                            </li>
+                            <li><span class="step-num"
+                                    style="background:var(--bg-elevated);border-color:var(--border-bright);">🍔</span><strong>Dynamic
+                                    Menu Management:</strong> Toggle availability, update prices, or add categories
+                                instantly.</li>
+                            <li><span class="step-num"
+                                    style="background:var(--bg-elevated);border-color:var(--border-bright);">📊</span><strong>Demand
+                                    Forecasting Analytics:</strong> View projected item sales to prepare bulk
+                                ingredients
+                                efficiently.</li>
+                        </ul>
+                    </div>
+
+                    <div class="section" id="r-stack">
+                        <div class="section-header">
+                            <h2>💻 5. Technology Stack Summary</h2>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Technologies</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Mobile App</strong></td>
+                                        <td>Flutter 3.x, Dart, Provider/SetState</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Web Admin</strong></td>
+                                        <td>React 18, Vite, TypeScript, Recharts, Axios</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Backend API</strong></td>
+                                        <td>Python 3.11+, FastAPI, SQLAlchemy, WebSockets</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Database</strong></td>
+                                        <td>PostgreSQL, Azure Blob Storage</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Machine Learning</strong></td>
+                                        <td>scikit-learn, XGBoost, Pandas</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cloud & DevOps</strong></td>
+                                        <td>GitHub Actions, Azure App Services, Firebase Hosting</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>External Services</strong></td>
+                                        <td>Razorpay API, SMTP</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END REPORT TAB -->
 
         </main>
     </div>
